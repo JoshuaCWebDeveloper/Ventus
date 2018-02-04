@@ -10,7 +10,10 @@ var gulp = require('gulp'),
     declare = require('gulp-declare'),
     defineModule = require('gulp-define-module'),
     del = require('del'),
-    mochaPhantomJS = require('gulp-mocha-phantomjs');
+    mochaPhantomJS = require('gulp-mocha-phantomjs'),
+    replace = require('gulp-replace'),
+    insert = require('gulp-insert'),
+    os = require('os');
 
 var paths = {
     build: 'dist',
@@ -38,10 +41,12 @@ gulp.task('compile:dev', function() {
                 '$': 'empty:'
             }
         }))
+        .pipe(replace("\n", os.EOL))
         .pipe(concat(package.name.toLowerCase() + '.js'))
         .pipe(wrap({
             src: paths.source + '/lib.template'
         }))
+        .pipe(insert.append('\n'))
         .pipe(gulp.dest(paths.build));
 });
 
