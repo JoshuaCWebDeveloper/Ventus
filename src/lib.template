@@ -4,7 +4,12 @@
  * http://www.rlamana.com
  */
 (function (root, factory) {
-    if (typeof define === 'function' && define.amd) { // AMD.
+    // CommonJS
+    if (typeof exports === "object" && typeof module === "object") {
+        module.exports = factory;
+
+    // RequireJS
+    } else if (typeof define === 'function' && define.amd) { // AMD.
         define(['$'], factory);
     } else { // Browser globals
         root.Ventus = factory(root.$);
