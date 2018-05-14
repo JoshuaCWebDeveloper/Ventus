@@ -1475,6 +1475,7 @@ define('ventus/wm/window', [
             }
         },
         resize: function (w, h) {
+            this.signals.emit('resize', this);
             this.width = w;
             this.height = h;
             return this;
