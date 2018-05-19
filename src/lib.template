@@ -5,11 +5,11 @@
  */
 (function (root, factory) {
     if (typeof define === 'function' && define.amd) { // AMD.
-        define(['$'], factory);
+        define(['$', '_'], factory);
     } else { // Browser globals
-        root.Ventus = factory(root.$);
+        root.Ventus = factory(root.$, root._);
     }
-}(this, function (jQuery) {
+}(this, function (jQuery, _) {
 
     <%= contents %>
 
